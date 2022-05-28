@@ -13,13 +13,19 @@ int main() {
     cin.tie(NULL);
     ios_base::sync_with_stdio(false);
 
-    int n;
+    int n, a = 1, room = 1;
     cin >> n;
 
-    cout << (n - 1) / 6 + 1;
-
-    // 1 7 19 37
-    // 0 6 12 18
+    if (n == 1) {
+        cout << n;
+    }
+    else {
+        while (n > a) {
+            a += 6 * room;
+            room++;
+        }
+        cout << room;
+    }
 
     return 0;
 } // END
