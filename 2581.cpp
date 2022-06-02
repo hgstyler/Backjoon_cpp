@@ -9,11 +9,13 @@
 #include <iostream>
 #include <vector>
 #include <cmath>
+#include <numeric>
 using namespace std;
 
-template <class vector>
-void is_prime(int m, int n, vector* v, vector* v1) {
+vector<int> is_prime(int m, int n) {
     int j;
+    vector<bool> v;
+    vector<int> v1;
 
     for (int cnt = 0; cnt < n + 1; cnt++) {
         v.push_back(true);
@@ -36,6 +38,7 @@ void is_prime(int m, int n, vector* v, vector* v1) {
         }
     }
 
+    return v1;
 }
 
 int main() {
@@ -43,16 +46,19 @@ int main() {
     ios_base::sync_with_stdio(false);
 
     int m, n, sum, min;
-    vector<bool> vec;
     vector<int> prime_group;
 
     cin >> m;
     cin >> n;
 
-    is_prime(m, n, &vec, &prime_group);
+    prime_group = is_prime(m, n);
 
-    for (int i = 0; i < prime_group.size(); i++) {
-        cout << prime_group[i] << " ";
+    if (prime_group.size() != 0) {
+        cout << accumulate(prime_group.begin(), prime_group.end(), 0) << "\n";
+        cout << prime_group[0] << "\n";
+    }
+    else {
+        cout << "-1\n";
     }
 
     return 0;
