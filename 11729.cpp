@@ -7,47 +7,42 @@
 // https://www.acmicpc.net/problem/11729
 
 #include <iostream>
+#include <string>
 #include <vector>
 using namespace std;
 
-vector<int> v1;
-vector<int> v2;
-vector<int> v3;
-int n, k;
-
-void pop_push(vector<int> vv, vector<int> ww) {
-	int tmp;
-
-	tmp = vv.pop_back();
-	ww.push_back(tmp);
+void moving(string from, string to, int& k, vector<string>& vv) {
+	k++;
+	vv[0] = to_string(k);
+	vv.push_back(from + " " + to);
 }
 
-void move() {
-	if (v3.size() == n) {
-
+void hanoi(int n, string from, string to, string via, int& k, vector<string>& vv) {
+	if (n == 1) {
+		moving(from, to, k, vv);
 	}
-	else if (v1[v1.index(end())] )
-
-
-	return;
+	else {
+		hanoi(n - 1, from, via, to, k, vv);
+		moving(from, to, k, vv);
+		hanoi(n - 1, via, to, from, k, vv);
+	}
 }
 
 int main() {
 	cin.tie(NULL);
 	ios_base::sync_with_stdio(false);
+
+	int num;
+	cin >> num;
+
+	vector<string> history;
+	int k = 0;
+
+	history.push_back(to_string(k));
+	hanoi(num, "1", "3", "2", k, history);
 	
-	cin >> n;
-
-	int i = n;
-	while (i--) {
-		v1.push_back(i + 1);
-	}
-	k = 0;
-
-	move();
-
-	for (int cnt = 0; cnt < n; cnt++) {
-		cout << v1[cnt] << " ";
+	for (int i = 0; i < history.size(); i++) {
+		cout << history[i] << "\n";
 	}
 
 	return 0;
