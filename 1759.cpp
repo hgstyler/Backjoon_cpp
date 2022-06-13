@@ -12,6 +12,7 @@
 using namespace std;
 
 int l, c;
+char cc;
 vector<char> vec;
 vector<bool> is_pw(15);
 
@@ -58,12 +59,12 @@ void gen(int jj, string s) {
 int main() {
 	ios_base::sync_with_stdio(false);
 	cin.tie(NULL); cout.tie(NULL);
-
+	
 	cin >> l >> c;
+	
 	for (int i = 0; i < c; ++i) {
-		char c;
-		cin >> c;
-		vec.push_back(c);
+		cin >> cc;
+		vec.push_back(cc);
 	}
 
 	sort(vec.begin(), vec.end());
